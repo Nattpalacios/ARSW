@@ -9,16 +9,27 @@ package edu.eci.arsw.threads;
  *
  * @author hcadavid
  */
-public class CountThread {
+public class CountThread extends Thread{
 	
-	private int number;
+	private int ini;
+	private int fin;
 	
-	public void print(int A, int B) {
-		number = A;
-		while(number <= B) {
-			System.out.println(number);
-			number++;
+	public CountThread(int A, int B) {
+		ini = A;
+		fin = B;
+	}
+	
+	private void print(int A, int B) {
+		ini = A;
+		while(ini <= B) {
+			System.out.println(ini);
+			ini++;
 		}
+	}
+	
+	@Override
+	public void run() {
+		print(ini, fin);
 	}
     
 }

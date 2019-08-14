@@ -6,10 +6,14 @@ package edu.eci.arsw.math;
 ///  https://en.wikipedia.org/wiki/Bailey%E2%80%93Borwein%E2%80%93Plouffe_formula
 ///  *** Translated from C# code: https://github.com/mmoroney/DigitsOfPi ***
 ///  </summary>
-public class PiDigits {
+public class PiDigits extends Thread{
 
     private static int DigitsPerSum = 8;
     private static double Epsilon = 1e-17;
+    
+    public PiDigits() {
+    	
+    }
 
     
     /**
