@@ -8,14 +8,14 @@ import java.util.ArrayList;
 ///  https://en.wikipedia.org/wiki/Bailey%E2%80%93Borwein%E2%80%93Plouffe_formula
 ///  *** Translated from C# code: https://github.com/mmoroney/DigitsOfPi ***
 ///  </summary>
-public class PiDigits{
+public class PiDigits extends Thread{
 
-    
+    private static int DigitsPerSum = 8;
     private static double Epsilon = 1e-17;
-    private ArrayList<Thread> digitos;
-    private static byte[] digits;  
-    
+    private static ArrayList <Thread> hilos;
+    private static byte[] digits;
     public PiDigits() {
+    	
     }
 
     
@@ -25,7 +25,8 @@ public class PiDigits{
      * @param count The number of digits to return
      * @return An array containing the hexadecimal digits.
      */
-    public static byte[] getDigits(int start, int count, int N) {
+    public static byte[] getDigitsOriginal(int start, int count) {
+    	byte[] digitsTemp = new byte[count];
         if (start < 0) {
             throw new RuntimeException("Invalid Interval");
         }
@@ -33,22 +34,51 @@ public class PiDigits{
         if (count < 0) {
             throw new RuntimeException("Invalid Interval");
         }
+        double sum = 0;
 
-        digits = new byte[count];       
-        int divEntera = (count / N) - (count % N);
-        int ini, fin;
-        for(int i = 0; i < N; i++){
-            ini = i;
-            fin = ini + divEntera;
-            System.out.println(ini);
-            System.out.println(fin);
-            ini = fin + 1;
+        for (int i = 0; i < count; i++) {
+            if (i % DigitsPerSum == 0) {
+                sum = 4 * sum(1, start)
+                        - 2 * sum(4, start)
+                        - sum(5, start)
+                        - sum(6, start);
+
+                start += DigitsPerSum;
+            }
+
+            sum = 16 * (sum - Math.floor(sum));
+            digitsTemp[i] = (byte) sum;
         }
-        return digits;
-    }
 
-    public void agregar(int pos,byte num){
-        digits[pos] = num;
+        return digitsTemp;
+    }
+    
+    public static byte[] getDigits(int start, int count, int N) throws InterruptedException {
+    	digits = new byte[count];
+    	hilos = new ArrayList<Thread>();
+        if (start < 0) {
+            throw new RuntimeException("Invalid Interval");
+        }
+        if (count < 0) {
+            throw new RuntimeException("Invalid Interval");
+        }
+        byte tam = (byte) (count / N);
+        int st = start; 
+        for(int i = 0; i < N - 1; i++) {
+        	hilos.add(new ControlDigits(st, tam));
+        	st += tam;
+        }
+        if(count > 0) {
+        	hilos.add(new ControlDigits(st, count - st));
+        }
+        
+        for(int i = 0; i < N; i++) {
+        	hilos.get(i).start();
+        }
+        for(int i = 0; i < N; i++) {
+        	hilos.get(i).join();
+        }          
+        return digits;
     }
 
     /// <summary>
@@ -57,7 +87,7 @@ public class PiDigits{
     /// <param name="m"></param>
     /// <param name="n"></param>
     /// <returns></returns>
-    public static double sum(int m, int n) {
+    private static double sum(int m, int n) {
         double sum = 0;
         int d = m;
         int power = n;
@@ -113,5 +143,11 @@ public class PiDigits{
 
         return result;
     }
+
+
+	public static void agregue(byte b, int i) {
+		//System.out.println("nuestro - " + b + " en la pos - " + i);
+		digits[i] = b;
+	}
 
 }

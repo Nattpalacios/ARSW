@@ -13,8 +13,8 @@ import java.util.Arrays;
  */
 public class Main {
 
-    public static void main(String a[]) {
-        System.out.println(bytesToHex(PiDigits.getDigits(0, 10, 3)));
+    public static void main(String a[]) throws InterruptedException {
+        System.out.println(bytesToHex(PiDigits.getDigits(0, 10, 2)));
         //System.out.println(bytesToHex(PiDigits.getDigits(1, 100)));
         //System.out.println(bytesToHex(PiDigits.getDigits(1, 1000000)));
     }
