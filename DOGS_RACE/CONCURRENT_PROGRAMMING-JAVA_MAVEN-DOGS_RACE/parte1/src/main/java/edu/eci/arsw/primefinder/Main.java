@@ -28,13 +28,11 @@ public class Main {
 
 			@Override
 			public void run() {
-				pft1.
+				
 			}
 		
 		};
-		time.schedule(task, 5000);
-		
-		reanudarHilos();*/
+		time.schedule(task, 5000);*/
 		
 	}
 	
