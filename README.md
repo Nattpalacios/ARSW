@@ -4,6 +4,7 @@
 
 ### Part I - Introduction to Java Threads
 ![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab2/master/Imagenes/1.JPG "Thread de números entre A y B")
+
 Esta es la forma en la que se completó la clase que define el ciclo de vida del hilo que imprime los números entre un A y B determinado.
 
 .Imagen2
