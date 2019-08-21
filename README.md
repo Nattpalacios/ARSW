@@ -27,3 +27,4 @@ En las imágenes se muestra el uso de la CPU cuando solo se trabaja con un hilo 
 ![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab2/master/Imagenes/6.JPG)
 
 ### Part III
+El programa tenía un problema a simple vista y era que apenas le dabas para empezar, anunciaba el ganador sin haber terminado la carrera y claramente daba un mal resultado. Para poder arreglar este problema, debía usarse join() para asegurarse de que todos los hilos ya habían terminado de ejecutarse, antes de anunciar el ganador.
