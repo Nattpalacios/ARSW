@@ -1,6 +1,15 @@
 package edu.eci.arsw.primefinder;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Main {
+	
+	private static Timer time;
+	private boolean pausar;
 
 	public static void main(String[] args) {
 		
@@ -14,6 +23,18 @@ public class Main {
 		pft2.start();
 		pft3.start();
 		
+		/*time = new Timer();
+		TimerTask task = new TimerTask() {
+
+			@Override
+			public void run() {
+				pft1.
+			}
+		
+		};
+		time.schedule(task, 5000);
+		
+		reanudarHilos();*/
 		
 	}
 	
