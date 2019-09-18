@@ -1,4 +1,4 @@
-# Laboratorio 2
+# Laboratorio 1
 
 ## BBP Formula
 
